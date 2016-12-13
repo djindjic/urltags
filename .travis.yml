@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+- '6'
+before_install:
+- export CHROME_BIN=chromium-browser
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sleep 3
+- npm i -g npm@^3
+script:
+- npm run lint
+# - npm test
+- npm run build
+sudo: required
+deploy:
+  skip_cleanup: true
+  provider: heroku
+  api_key:
+    secure: c4XoiSHX86OfENJit2kOoaQzMtRm+6DZ1XT9XijuTwl+GtKwLyJ1HWNPR1yaQXgnPnRgPh7+b1qdAwX4i07CgcnJ3dm69I5hudLUAy78QybesHByZKagHjcfyZ4RWbE3KrblxDExMJVBLwwAJPDodq4MyW3mPlQ/8y9sA8WuncpBgTKGORZJwpi99u6Q3FdFkw6kFlMPX1PB3mdxONiHdzxPCEmCGvX59DctHhIQSK5htZqwTUKuk8o6OirvVUJSjfe7At+686EplE+L/XEbB+exuLBmAaThdhWXk/2Kpd9DKDvgQ4n6y4yYIy5FNqCsipYEZc1nILcNAvEP+nxN5aO2asoYMwaX4lnvwqWwg1D1mJX5mCTdMLLHYhG7ZFdPUz5YM4tP+2omC2lZ0E4+Sa5M72YAGHD1wrRpMTKWI9L13opVPvHjQOtTGlEsbdyKPfJacghMwfwSf08xGo0hwLW01ZeKwdw3rQUy0xBIBlDQ+msQEfN23cOvSFFaRquNPpcT5RP77XED8Ix6AL5XPG2VTzFhNPzRBlyFZFrdez0z8UUi3DmjnQ9ip1BFqaUFVgtMfbbjeMT1EEZoYkmZgqm18ESgY8a6w7FS6ZMRVC3dx2rn3nJTuV4EtNRLeD69vCrNgozaER2TpiQilpsVZtgmYV6pMcwuZ+vEZxn0hWw=
+  run:
+    - "rake db:drop"
+    - "rake db:create"
+    - "rake db:migrate"
+    - "rake db:seed"

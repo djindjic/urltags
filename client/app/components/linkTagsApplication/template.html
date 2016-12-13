@@ -1,0 +1,68 @@
+<div class="main-container">
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-horizontal">
+                <div class="form-group form-group-lg">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <div class="input-group-addon">Link</div>
+                            <input type="text"
+                                   class="form-control"
+                                   ng-model="$ctrl.url">
+                            <div class="input-group-addon">
+                                <button type="button" class="btn btn-default add-button"
+                                        ng-click="$ctrl.load()">Load</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row"
+         ng-show="$ctrl.loadedLink">
+        <div class="col-sm-12">
+            <div class="checkbox"
+                 ng-repeat="tag in $ctrl.loadedLink.tags">
+                <label>
+                    <input type="checkbox"
+                           ng-model="tag.value"
+                           ng-hide="tag.value">{{ tag.value ? '' :tag.text}}
+                    <span class="label label-info tag-label"
+                          ng-show="tag.value">
+                        {{tag.text}}
+                    </span>
+                </label>
+            </div>
+            <button type="button"
+                    class="btn btn-default"
+                    ng-click="$ctrl.save()">Save</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table">
+                <thead>
+                    <th>Link</th>
+                    <th>Tags</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="link in $ctrl.links">
+                        <td>
+                            <a ng-href="{{link.url}}"
+                               target="_blank">
+                                {{link.url}}
+                            </a>
+                        </td>
+                        <td>
+                            <span class="label label-info tag-label"
+                                 ng-repeat="tag in link.tags">
+                                {{tag}}
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

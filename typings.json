@@ -1,0 +1,15 @@
+{
+  "globalDependencies": {
+    "angular": "registry:dt/angular#1.5.0+20160922195358",
+    "jquery": "registry:dt/jquery#1.10.0+20160929162922",
+    "source-map": "registry:dt/source-map#0.0.0+20161003134342",
+    "uglify-js": "registry:dt/uglify-js#2.6.1+20160316155526"
+  },
+  "globalDevDependencies": {
+    "angular-mocks": "registry:dt/angular-mocks#1.5.0+20160608104721",
+    "jasmine": "registry:dt/jasmine#2.5.0+20161003201800"
+  },
+  "dependencies": {
+    "ramda": "registry:npm/ramda#0.21.0+20160531162943"
+  }
+}
